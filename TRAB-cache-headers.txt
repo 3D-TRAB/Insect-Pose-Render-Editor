@@ -1,0 +1,9 @@
+# Append this block to the EXISTING .htaccess in this application's web folder.
+# Keep the existing gzip/Brotli Content-Encoding and MIME rules.
+# Never send Clear-Site-Data: it would also remove saved configs.
+<IfModule mod_headers.c>
+  <FilesMatch "^(index\.html|ServiceWorker\.js|.*\.loader\.js)$">
+    Header unset Cache-Control
+    Header always set Cache-Control "no-cache, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
